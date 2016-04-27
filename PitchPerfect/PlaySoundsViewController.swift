@@ -19,6 +19,8 @@ class PlaySoundsViewController: UIViewController {
   @IBOutlet weak var reverbButton: UIButton!
   @IBOutlet weak var stopButton: UIButton!
   @IBOutlet weak var audioDurationLabel: UILabel!
+  @IBOutlet var buttons: [UIButton]!
+ 
   
   var recordedAudioURL: NSURL!
   var audioFile: AVAudioFile!
@@ -57,6 +59,8 @@ class PlaySoundsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupAudio()
+    setContentMode()
+    
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -66,6 +70,12 @@ class PlaySoundsViewController: UIViewController {
 
   override func didReceiveMemoryWarning() {
       super.didReceiveMemoryWarning()
+  }
+  
+  func setContentMode() {
+    for button in buttons {
+      button.imageView!.contentMode = .ScaleAspectFit
+    }
   }
 
 }

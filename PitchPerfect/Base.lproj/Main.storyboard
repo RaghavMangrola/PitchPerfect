@@ -97,14 +97,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ALb-f8-wfI" userLabel="Horizontal Stack View">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="107"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlj-dW-Lcm" userLabel="SnailButton">
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlj-dW-Lcm" userLabel="SnailButton">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="107"/>
                                                 <state key="normal" image="snailButton"/>
                                                 <connections>
                                                     <action selector="playSoundForButton:" destination="vZA-zc-Wdm" eventType="touchUpInside" id="X5h-09-ZUs"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iB2-h3-zbn" userLabel="RabbitButton">
+                                            <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iB2-h3-zbn" userLabel="RabbitButton">
                                                 <rect key="frame" x="280" y="0.0" width="280" height="107"/>
                                                 <state key="normal" image="rabbitButton"/>
                                                 <connections>
@@ -200,6 +200,12 @@
                         <outlet property="snailButton" destination="hlj-dW-Lcm" id="AKX-ER-BN7"/>
                         <outlet property="stopButton" destination="91C-Gr-XEW" id="6UF-aS-5nz"/>
                         <outlet property="vaderButton" destination="e68-jB-9kt" id="4a8-IF-qho"/>
+                        <outletCollection property="buttons" destination="hlj-dW-Lcm" id="sEu-8n-dQr"/>
+                        <outletCollection property="buttons" destination="iB2-h3-zbn" id="zUr-Je-8iq"/>
+                        <outletCollection property="buttons" destination="0ot-3g-o22" id="B62-tO-7Vr"/>
+                        <outletCollection property="buttons" destination="e68-jB-9kt" id="Rir-WD-1XG"/>
+                        <outletCollection property="buttons" destination="OLo-mY-BZK" id="363-nx-QY2"/>
+                        <outletCollection property="buttons" destination="fbd-U8-eFo" id="a0w-sy-zeN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ok5-kM-sva" userLabel="First Responder" sceneMemberID="firstResponder"/>
