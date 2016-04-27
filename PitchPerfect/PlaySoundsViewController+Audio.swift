@@ -38,9 +38,13 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
   }
   
   func playSound(rate rate: Float? = nil, pitch: Float? = nil, echo: Bool = false, reverb: Bool = false) {
-    // initialize audio engine components
     audioEngine = AVAudioEngine()
-    
+    setupNodes(pitch: pitch!, rate: rate!, echo: echo, reverb: reverb)
+    scheduleAudio(rate: rate!)
+    playAudio()
+  }
+  
+  func setupNodes(pitch pitch: Float?, rate: Float?, echo: Bool, reverb: Bool) {
     // node for playing audio
     audioPlayerNode = AVAudioPlayerNode()
     audioEngine.attachNode(audioPlayerNode)
@@ -76,8 +80,10 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
     } else {
       connectAudioNodes(audioPlayerNode, changeRatePitchNode, audioEngine.outputNode)
     }
-    
-    // schedule to play and start the engine!
+
+  }
+  
+  func scheduleAudio(rate rate: Float?) {
     audioPlayerNode.stop()
     audioPlayerNode.scheduleFile(audioFile, atTime: nil) {
       
@@ -96,7 +102,9 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
       self.stopTimer = NSTimer(timeInterval: delayInSeconds, target: self, selector: #selector(PlaySoundsViewController.stopAudio), userInfo: nil, repeats: false)
       NSRunLoop.mainRunLoop().addTimer(self.stopTimer, forMode: NSDefaultRunLoopMode)
     }
-    
+  }
+  
+  func playAudio() {
     do {
       try audioEngine.start()
     } catch {
@@ -141,21 +149,21 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
     audioDurationLabel.text = String(format:"Recording Length: %0.2f seconds", audioPlayer.duration)
     switch(playState) {
     case .Playing:
-      setPlayButtonsEnabled(false)
-      stopButton.enabled = true
+      configureButtons(playing: true)
     case .NotPlaying:
-      setPlayButtonsEnabled(true)
-      stopButton.enabled = false
+      configureButtons(playing: false)
     }
   }
   
+  func configureButtons(playing playing: Bool) {
+    setPlayButtonsEnabled(!playing)
+    stopButton.enabled = playing
+  }
+  
   func setPlayButtonsEnabled(enabled: Bool) {
-    snailButton.enabled = enabled
-    chipmunkButton.enabled = enabled
-    rabbitButton.enabled = enabled
-    vaderButton.enabled = enabled
-    echoButton.enabled = enabled
-    reverbButton.enabled = enabled
+    for button in buttons {
+      button.enabled = enabled
+    }
   }
   
   func showAlert(title: String, message: String) {

@@ -59,7 +59,7 @@ class PlaySoundsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupAudio()
-    setContentMode()
+    setButtonContentMode()
     
   }
   
@@ -72,7 +72,7 @@ class PlaySoundsViewController: UIViewController {
       super.didReceiveMemoryWarning()
   }
   
-  func setContentMode() {
+  func setButtonContentMode() {
     for button in buttons {
       button.imageView!.contentMode = .ScaleAspectFit
     }
